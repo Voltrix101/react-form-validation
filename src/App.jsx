@@ -1,23 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Form from './components/Form';
 import Success from './components/Success';
+import { ThemeProvider } from './context/ThemeContext';
+import ThemeToggle from './components/ThemeToggle';
 import Footer from './components/Footer';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <div className="container">
+    <ThemeProvider>
+      <Router>
+        <div className="app">
+          <ThemeToggle />
           <Routes>
             <Route path="/" element={<Form />} />
             <Route path="/success" element={<Success />} />
           </Routes>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 
